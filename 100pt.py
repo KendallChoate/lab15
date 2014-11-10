@@ -63,22 +63,36 @@ class MyApp:
 		global drawpad
                 x1,y1,x2,y2 = drawpad.coords(player)
 		# Get the coords of our target
-                drawpad.move(player,0,-10)
+		################################ Fix this!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		if (y1 > 0):
+                    drawpad.move(player,0,-10)
                 
         def leftClicked(self, event):   
-	        global oval
 	        global player
-	        drawpad.move(player,-10,0)
+	        global drawpad
+		# Added movement to left
+		x1,y1,x2,y2 = drawpad.coords(player)
+		#Added boundary
+		if (x1 > 0):
+                    drawpad.move(player, -10, 0)
 	   
-	def rightClicked(self, event):   
-	        global oval
+	def rightClicked(self, event):
 	        global player
-	        drawpad.move(player,10,0)	
+	        global drawpad
+	        # Added movement to right
+	        x1,y1,x2,y2 = drawpad.coords(oval)
+	        ################################ Fix this!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	        if (x2 < 480):
+	            drawpad.move(player,10,0)	
 	   
-	def downClicked(self, event):   
-	        global oval
+	def downClicked(self, event):
 	        global player
-	        drawpad.move(player,0,10)
+	        global drawpad
+	        x1,y1,x2,y2 = drawpad.coords(oval)
+	        ################################ Fix this!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	        if (y2 < 320):
+	           drawpad.move(player,0,10)
+		
 
         # Animate function that will bounce target left and right, and trigger the collision detection  
 	def animate(self):
@@ -97,7 +111,7 @@ class MyApp:
             
             
             #  This will trigger our collision detect function
-            didWeHit = self.collisionDetect()
+                didWeHit = self.collisionDetect()
             # Use the value of didWeHit to create an if statement
             # that determines whether to run drawpad.after(1,self.animate) or not
             
