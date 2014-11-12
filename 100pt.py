@@ -4,9 +4,9 @@
 #
 #########################################
 
-# Animate the target area to bounce from left to right.
-# Add in buttons for movement left, right, up and down
-# Add in boundary detection for the edges (don't let the player move off screen)
+# Animate the target area to bounce from left to right. Check
+# Add in buttons for movement left, right, up and down. Check
+# Add in boundary detection for the edges (don't let the player move off screen). Check
 # Add in collision detection - and STOP the target when you catch it!
 
 from Tkinter import *
@@ -63,7 +63,6 @@ class MyApp:
 		global drawpad
                 x1,y1,x2,y2 = drawpad.coords(player)
 		# Get the coords of our target
-		################################ Fix this!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		if (y1 > 0):
                     drawpad.move(player,0,-10)
                 
@@ -80,20 +79,17 @@ class MyApp:
 	        global player
 	        global drawpad
 	        # Added movement to right
-	        x1,y1,x2,y2 = drawpad.coords(oval)
-	        ################################ Fix this!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	        x1,y1,x2,y2 = drawpad.coords(player)
 	        if (x2 < 480):
-	            drawpad.move(player,10,0)	
+	            drawpad.move(player, 10, 0)	
 	   
 	def downClicked(self, event):
 	        global player
 	        global drawpad
-	        x1,y1,x2,y2 = drawpad.coords(oval)
-	        ################################ Fix this!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	        x1,y1,x2,y2 = drawpad.coords(player)
 	        if (y2 < 320):
 	           drawpad.move(player,0,10)
 		
-
         # Animate function that will bounce target left and right, and trigger the collision detection  
 	def animate(self):
 	        global drawpad
@@ -122,8 +118,11 @@ class MyApp:
                 global player
                 # Get the co-ordinates of our player AND our target
                 # using x1,y1,x2,y2 = drawpad.coords(object)
-
+                x1,y1,x2,y2 = drawpad.coords(object)
                 # Do your if statement - remember to return True if successful!                
+		if didWeHit == x1,y1,x2,y2:
+		    drawpad.after(1,self.animate)
+		    
 		
 myapp = MyApp(root)
 
