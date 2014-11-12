@@ -69,16 +69,15 @@ class MyApp:
         def leftClicked(self, event):   
 	        global player
 	        global drawpad
-		# Added movement to left
+		# Added movement to left and boundary detection
 		x1,y1,x2,y2 = drawpad.coords(player)
-		#Added boundary
 		if (x1 > 0):
                     drawpad.move(player, -10, 0)
 	   
 	def rightClicked(self, event):
 	        global player
 	        global drawpad
-	        # Added movement to right
+	        # Added movement to right and boundary detection
 	        x1,y1,x2,y2 = drawpad.coords(player)
 	        if (x2 < 480):
 	            drawpad.move(player, 10, 0)	
@@ -86,6 +85,7 @@ class MyApp:
 	def downClicked(self, event):
 	        global player
 	        global drawpad
+	        #Added movement to down and boundary detection
 	        x1,y1,x2,y2 = drawpad.coords(player)
 	        if (y2 < 320):
 	           drawpad.move(player,0,10)
@@ -98,6 +98,7 @@ class MyApp:
 	        global direction
 	        tx1,ty1,tx2,ty2 = drawpad.coords(target)
 	        # Insert the code here to make the target move, bouncing on the edges
+	        # Added target movment
 	        if tx2 > drawpad.winfo_width():
                     direction = -1
                 elif tx1 < 0:
