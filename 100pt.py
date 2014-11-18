@@ -7,7 +7,7 @@
 # Animate the target area to bounce from left to right. Check
 # Add in buttons for movement left, right, up and down. Check
 # Add in boundary detection for the edges (don't let the player move off screen). Check
-# Add in collision detection - and STOP the target when you catch it!
+# Add in collision detection - and STOP the target when you catch it! Check
 
 from Tkinter import *
 root = Tk()
@@ -104,12 +104,11 @@ class MyApp:
                 elif tx1 < 0:
                     direction = 1
                 drawpad.move(target,direction, 0)
-                drawpad.after(10,self.animate)
             
             
             #  This will trigger our collision detect function
                 didWeHit = self.collisionDetect()
-##############################################Fix this!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                #Stops target from moving
                 if didWeHit == False:
                     drawpad.after(1,self.animate)
             # Use the value of didWeHit to create an if statement
@@ -125,7 +124,7 @@ class MyApp:
                 x1,y1,x2,y2 = drawpad.coords(player)
                 tx1,ty1,tx2,ty2 = drawpad.coords(target)
                 # Do your if statement - remember to return True if successful!                
-                if (x1 > targetx1 and x2 < targetx2) and (y1 > targety1 and y2 < targety2):
+                if (x1 > tx1 and x2 < tx2) and (y1 > ty1 and y2 < ty2):
                     return True
                 else:
                     return False
